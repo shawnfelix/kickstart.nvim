@@ -2,6 +2,7 @@
 -- https://github.com/nvim-neo-tree/neo-tree.nvim
 
 -- Define a custom function to switch to an existing window if the file is already open
+--[[
 local function switch_to_existing_window(state)
   local node = state.tree:get_node()
   if node.type == 'file' then
@@ -17,9 +18,8 @@ local function switch_to_existing_window(state)
     end
   end
   -- If the file is not open in any window, open it in the current window
-  print 'not found................'
   require('neo-tree.sources.filesystem.commands').open(state)
-end
+end --]]
 
 return {
   'nvim-neo-tree/neo-tree.nvim',
@@ -36,6 +36,7 @@ return {
   opts = {
     filesystem = {
       hijack_netrw_behavior = 'open_current',
+      use_libuv_file_watcher = true,
       window = {
         position = 'right',
         mappings = {
